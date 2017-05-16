@@ -102,7 +102,7 @@ def offset_cut(input_svg, params):
     for path in input_svg:
         print('starting a path')
         # calculate number of cuts
-        pathlength = path.length()
+        pathlength = float(path.length(error=1e-3))
         maxcuts = pathlength/(l_range[0]+t_range[0])
         mincuts = pathlength/(l_range[1]+t_range[1])
         ncuts = int((mincuts + maxcuts)/2)
@@ -113,8 +113,9 @@ def offset_cut(input_svg, params):
 
         # accumulate positive and negative segments
         for i in range(ncuts):
-            cut_start = path.ilength(ltotal*i)
-            cut_end = path.ilength(ltotal*(i+1) - t)
+            print("%s/%s" % (ltotal*i, pathlength))
+            cut_start = path.ilength(ltotal*i, s_tol=1e-3, error=1e-3)
+            cut_end = path.ilength(ltotal*(i+1) - t, s_tol=1e-3, error=1e-3)
             print(cut_start)
             positive.append(partial_offset_curve(path, cut_start, cut_end,
                                                  params['cut_width']/2))
