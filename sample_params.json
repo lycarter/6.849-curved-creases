@@ -1,10 +1,10 @@
 {
     "_tab_length": "range for tab length, units in pixels",
-    "tab_length": [5, 20],
+    "tab_length": [5, 10],
     "_cut_length": "range for cut length, units in pixels",
-    "cut_length": [100, 125],
+    "cut_length": [50, 60],
     "_cut_width": "optional, cut width if no svg file specified",
-    "cut_width": 10,
+    "cut_width": 5,
     "_cut_file": "cut filename or false if offset cutting is desired",
     "cut_file": false
 }
