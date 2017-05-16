@@ -78,49 +78,62 @@ def apply_cut(discrete_svg, input_cut):
 
 #     return offset_path
 
-def partial_offset_curve(path, start_t, end_t, offset_distance, steps=300):
+def partial_offset_curve(path, start_t, end_t, offset_distance, steps=10):
     nls = []
     diff = end_t - start_t
     for k in range(steps):
         t = start_t + diff*k/steps
         offset_vector = offset_distance * path.normal(t)
-        nls.append(path.point(t) + offset_vector)
+        p = path.point(t)
+        # print(p)
+        nls.append(p + offset_vector)
     connect_the_dots = [svg.Line(nls[k], nls[k+1]) for k in range(len(nls) - 1)]
-    if path.isclosed():
-        connect_the_dots.append(svg.Line(nls[-1], nls[0]))
     offset_path = svg.Path(*connect_the_dots)
 
     return offset_path
 
 def offset_cut(input_svg, params):
-    l = params['cut_length']
-    t = params['tab_length']
+    print('beginning cuts')
+    l_range = params['cut_length']
+    t_range = params['tab_length']
 
     positive = svg.Path()
     negative = svg.Path()
     for path in input_svg:
+        print('starting a path')
         # calculate number of cuts
-        maxcuts = path.length()/(l[0]+t[0])
-        mincuts = path.length()/(l[1]+t[1])
+        pathlength = path.length()
+        maxcuts = pathlength/(l_range[0]+t_range[0])
+        mincuts = pathlength/(l_range[1]+t_range[1])
         ncuts = int((mincuts + maxcuts)/2)
-        ltotal = path.length()/ncuts
-        l = max(ltotal - (t[0] + t[1])/2, l[0])
+        ltotal = pathlength/ncuts
+        l = max(ltotal - (t_range[0] + t_range[1])/2, l_range[0])
         t = ltotal - l
-        for i in range(ncuts - 1):
+        print('there are %s cuts' % ncuts)
+
+        # accumulate positive and negative segments
+        for i in range(ncuts):
             cut_start = path.ilength(ltotal*i)
             cut_end = path.ilength(ltotal*(i+1) - t)
+            print(cut_start)
             positive.append(partial_offset_curve(path, cut_start, cut_end,
                                                  params['cut_width']/2))
             negative.append(partial_offset_curve(path, cut_start, cut_end,
                                                  -params['cut_width']/2))
+        print('cut a path')
 
-    cut_path = []
+    print('number of segments: %s' % len(positive))
+
+    cut_paths = []
     for i in range(len(positive)):
         pos_path = positive[i]
         neg_path = negative[i]
-        pos_path.append(svg.Line(pos_path[-1].end,neg_path[-1].start))
+        pos_path.append(svg.Line(pos_path[-1].end, neg_path[-1].end))
         pos_path.extend(neg_path[::-1])
-        pos_path.extend(neg_path[0].start, pos_path[0].start)
+        pos_path.append(svg.Line(neg_path[0].start, pos_path[0].start))
+        cut_paths.append(svg.Path(*pos_path))
+
+    return cut_paths
 
 
 
@@ -135,6 +148,7 @@ if __name__ == '__main__':
     input_cut_file = params['cut_file']
 
     (input_svg, svg_attributes) = read_svg(input_svg_file)
+    print input_svg
 
     if input_cut_file:
         (input_cut, cut_attributes) = read_svg(input_cut_file)
