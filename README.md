@@ -21,11 +21,11 @@ The input svg can be created by any program, but it can be difficult to achieve 
 
 ### Offset Cut ###
 
-Input:
+Input (stroke-width and stroke attributes have been modified manually to make it show up well on Github)
 
 ![](https://lycarter.github.io/6.849-curved-creases/circle.svg)
 
-Output:
+Output (stroke-width has been modified manually to make it show up well on Github)
 
 ![](https://lycarter.github.io/6.849-curved-creases/circle_out.svg)
 
