@@ -6,5 +6,5 @@
     "_cut_width": "cut width if no cut file specified. ignored otherwise",
     "cut_width": 5,
     "_cut_file": "cut filename or false if offset cutting is desired",
-    "cut_file": false
+    "cut_file": "docs/cut_spec.svg"
 }
