@@ -31,13 +31,13 @@ Output (stroke-width has been modified manually to make it show up well on Githu
 
 A more complex example:
 
-Input:
+Input (stroke-width and stroke attributes have been modified manually to make it show up well on Github)
 
-todo
+![](https://lycarter.github.io/6.849-curved-creases/circles.svg)
 
-Output:
+Output (stroke-width has been modified manually to make it show up well on Github)
 
-todo
+![](https://lycarter.github.io/6.849-curved-creases/circles_out.svg)
 
 
 ### External File Cut ###
