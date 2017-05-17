@@ -1,6 +1,6 @@
 {
     "_tab_length": "range for tab length, units in pixels",
-    "tab_length": [5, 10],
+    "tab_length": [0, 5],
     "_cut_length": "range for cut length, units in pixels",
     "cut_length": [50, 60],
     "_cut_width": "cut width if no cut file specified. ignored otherwise",
