@@ -67,7 +67,7 @@ def scale_cut(start_pos, end_pos, cut_file):
     center = (scale*(xmin+xmax)/2.0) + (scale*(ymin+ymax)/2.0)*1j
 
     new_file = new_file.rotated((180/math.pi)*theta, center)
-    new_file = new_file.translated(center-mid_pos)
+    new_file = new_file.translated(mid_pos - center)
 
     return new_file
 
@@ -89,6 +89,9 @@ def cut(input_svg, params, cut_file=None):
         maxcuts = pathlength/(l_range[0]+t_range[0])
         mincuts = pathlength/(l_range[1]+t_range[1])
         ncuts = int((mincuts + maxcuts)/2)
+        if ncuts == 0:
+            print path
+            print pathlength
         ltotal = pathlength/ncuts
         l = max(ltotal - (t_range[0] + t_range[1])/2, l_range[0])
         t = ltotal - l
