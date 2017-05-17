@@ -46,6 +46,8 @@ For both examples, the cut file used is (stroke-width and stroke attributes have
 
 ![](https://lycarter.github.io/6.849-curved-creases/cut_spec.svg)
 
+This file can be at any scale, and will be scaled proportionally when templated into the cut pattern. Scaling attributes are still handled by the parameters json input file (see [`sample_params_cutfile.json`](sample_params_cutfile.json) for the example that generated these outputs).
+
 Input (stroke-width and stroke attributes have been modified manually to make it show up well on Github)
 
 ![](https://lycarter.github.io/6.849-curved-creases/circle.svg)
