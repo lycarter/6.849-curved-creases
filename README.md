@@ -42,4 +42,20 @@ Output (stroke-width has been modified manually to make it show up well on Githu
 
 ### External File Cut ###
 
-todo
+Input (stroke-width and stroke attributes have been modified manually to make it show up well on Github)
+
+![](https://lycarter.github.io/6.849-curved-creases/circle.svg)
+
+Output (stroke-width has been modified manually to make it show up well on Github)
+
+![](https://lycarter.github.io/6.849-curved-creases/circle_cutfile.svg)
+
+A more complex example:
+
+Input (stroke-width and stroke attributes have been modified manually to make it show up well on Github)
+
+![](https://lycarter.github.io/6.849-curved-creases/circles.svg)
+
+Output (stroke-width has been modified manually to make it show up well on Github)
+
+![](https://lycarter.github.io/6.849-curved-creases/circles_cutfile.svg)
