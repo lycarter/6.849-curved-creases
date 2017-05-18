@@ -2,7 +2,6 @@
 # disable warnings about variable names
 # pylint: disable=C0103
 
-
 import json
 import cmath
 import math
@@ -129,7 +128,6 @@ def cut(input_svg, params, cut_file=None):
             cut_paths.append(svg.Path(*pos_path))
 
     return cut_paths
-
 
 
 if __name__ == '__main__':
